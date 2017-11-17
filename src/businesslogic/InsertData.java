@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import businessEntity.dao.DaoConnectionDriverManeger;
+import businessEntity.dao.InsertT_COST;
 import businessEntity.dao.InsertT_SALE_TRAN;
 import businessEntity.dao.InsertT_STOCK;
+import businessEntity.dto.T_COST;
 import businessEntity.dto.T_SALE_TRAN;
 
 public class InsertData {
@@ -264,8 +266,7 @@ public class InsertData {
 		}
 	}
 
-	public void insertZaiko(String sql, String stockYMD, String productCd, int stocks ) throws Exception
-	{
+	public void insertZaiko(String sql, String stockYMD, String productCd, int stocks) throws Exception {
 		try {
 			// Connectionの作成
 			conn = dm.getConnection();
@@ -308,5 +309,11 @@ public class InsertData {
 				// nop
 			}
 		}
+	}
+
+	public void inserTCost(T_COST tCost) throws SQLException {
+		InsertT_COST insertTCost = new InsertT_COST();
+
+		insertTCost.insertTCost(tCost);
 	}
 }
