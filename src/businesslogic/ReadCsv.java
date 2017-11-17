@@ -9,10 +9,14 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class ReadCsv implements IReadCsv {
+	
+	ArrayList<ArrayList<String>> raw;
+	
+	public ReadCsv() {
+		raw = new ArrayList<ArrayList<String>>();
+	}
 
 	public ArrayList<ArrayList<String>> readCsv(String fileName) {
-		ArrayList<ArrayList<String>> raw = new ArrayList<>();
-
 		try {
 			File csv = new File(fileName);
 
@@ -44,7 +48,6 @@ public class ReadCsv implements IReadCsv {
 		}
 
 		return raw;
-
 	}
 
 	public void readShiireCsv() throws Exception {
