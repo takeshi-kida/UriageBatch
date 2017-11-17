@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 import businessEntity.dao.InsertT_SALE_TRAN;
 import businessEntity.dto.T_SALE_TRAN;
 
-public class ReadCsv {
+public class ReadCsv implements IReadCsv {
 
 	public ArrayList<ArrayList<String>> readCsv(String fileName) {
 		ArrayList<ArrayList<String>> raw = new ArrayList<>();
