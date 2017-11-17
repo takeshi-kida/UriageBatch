@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import businessEntity.dao.InsertT_SALE_TRAN;
-import businessEntity.dto.T_SALE_TRAN;
-
 public class ReadCsv implements IReadCsv {
 
 	public ArrayList<ArrayList<String>> readCsv(String fileName) {
@@ -48,50 +45,6 @@ public class ReadCsv implements IReadCsv {
 
 		return raw;
 
-	}
-
-	public void readUriageCsv() throws Exception {
-		try {
-			File csv = new File("C:\\TEMP\\URIAGE.csv"); // CSVデータファイル
-
-			BufferedReader br = new BufferedReader(new FileReader(csv));
-
-			SelectData selectOracle = new SelectData();
-			InsertT_SALE_TRAN insertTSaleTran = new InsertT_SALE_TRAN();
-			T_SALE_TRAN tSaleTran = new T_SALE_TRAN();
-
-			// 最終行まで読み込む
-			String line = "";
-			tSaleTran.INCLUSION_YMD = selectOracle.selectTSystemInfo();
-			while ((line = br.readLine()) != null) {
-
-				// 1行をデータの要素に分割
-				StringTokenizer st = new StringTokenizer(line, ",");
-
-				tSaleTran.VOUCHER_NO = "";
-				tSaleTran.PRODUCT_CD = "";
-				tSaleTran.SALES = 0;
-				tSaleTran.SEQ_T_SALE_TRAN = selectOracle.seqTranUri();
-
-				while (st.hasMoreTokens()) {
-					// 1行の各要素をタブ区切りで表示
-
-					tSaleTran.VOUCHER_NO = st.nextToken();
-					tSaleTran.PRODUCT_CD = st.nextToken();
-					tSaleTran.SALES = Integer.parseInt(st.nextToken());
-				}
-
-				insertTSaleTran.insertTSaleTran(tSaleTran);
-			}
-			br.close();
-
-		} catch (FileNotFoundException e) {
-			// Fileオブジェクト生成時の例外捕捉
-			e.printStackTrace();
-		} catch (IOException e) {
-			// BufferedReaderオブジェクトのクローズ時の例外捕捉
-			e.printStackTrace();
-		}
 	}
 
 	public void readShiireCsv() throws Exception {
