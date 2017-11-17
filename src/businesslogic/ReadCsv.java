@@ -49,6 +49,9 @@ public class ReadCsv implements IReadCsv {
 
 		return raw;
 	}
+	
+	public void validation(ArrayList<ArrayList<String>> raw)
+	{}
 
 	public void readShiireCsv() throws Exception {
 		try {
