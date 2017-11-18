@@ -10,6 +10,7 @@ import businessEntity.dao.DaoConnectionDriverManeger;
 import businessEntity.dao.InsertT_COST;
 import businessEntity.dao.InsertT_SALE_TRAN;
 import businessEntity.dao.InsertT_STOCK;
+import businessEntity.dao.MergeT_STOCK;
 import businessEntity.dto.T_COST;
 import businessEntity.dto.T_SALE_TRAN;
 
@@ -26,8 +27,8 @@ public class InsertData {
 
 		insertTSaleTran.insertTSaleTran(tSaleTran);
 	}
-	
-	
+
+
 	public void insertUriage(String sql, String voucherNo, int salesAmount ) throws Exception
 	{
 		try {
@@ -172,7 +173,7 @@ public class InsertData {
 	public void copyTStock() throws SQLException
 	{
 		InsertT_STOCK insertTStock = new InsertT_STOCK();
-		
+
 		insertTStock.copyTStock();
 	}
 
@@ -315,5 +316,11 @@ public class InsertData {
 		InsertT_COST insertTCost = new InsertT_COST();
 
 		insertTCost.insertTCost(tCost);
+	}
+
+	public void mergeTStock() throws SQLException {
+		MergeT_STOCK mergeTStock = new MergeT_STOCK();
+
+		mergeTStock.mergeTStock();
 	}
 }
