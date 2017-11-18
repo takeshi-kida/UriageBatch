@@ -94,51 +94,6 @@ public class SelectData {
 		}
 	}
 
-	public String selectTSystemInfo() throws Exception {
-
-		String sysBusinessDay = "";
-
-		try {
-			// Connectionの作成
-			conn = dm.getConnection();
-
-			// Statementの作成
-			stmt = conn.createStatement();
-
-			// Resultsetの作成
-			rset = stmt.executeQuery("select * from T_SYSTEM_INFO");
-
-			// 取得したデータを出力する
-			while (rset.next()) {
-				sysBusinessDay = rset.getString("SYS_BUSINESS_DAY");
-			}
-
-			return sysBusinessDay;
-		} catch (Exception e) {
-			return null;
-		} finally {
-			try {
-				/* クローズ処理 */
-				if (rset != null) {
-					rset.close();
-					rset = null;
-				}
-
-				if (stmt != null) {
-					stmt.close();
-					stmt = null;
-				}
-
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-			} catch (Throwable e) {
-				// nop
-			}
-		}
-	}
-
 	public int seqTranUri() throws Exception {
 
 		int seqTranUri = 0;
@@ -206,51 +161,6 @@ public class SelectData {
 			}
 
 			return costUnitPrice;
-		} catch (Exception e) {
-			return 0;
-		} finally {
-			try {
-				/* クローズ処理 */
-				if (rset != null) {
-					rset.close();
-					rset = null;
-				}
-
-				if (stmt != null) {
-					stmt.close();
-					stmt = null;
-				}
-
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-			} catch (Throwable e) {
-				// nop
-			}
-		}
-	}
-
-	public int selectZaikoRecord(String productCd) throws Exception {
-		int recordCount = 0;
-
-		try {
-			// Connectionの作成
-			conn = dm.getConnection();
-
-			// Statementの作成
-			stmt = conn.createStatement();
-
-			// Resultsetの作成
-			rset = stmt
-					.executeQuery("select COUNT(*) AS COUNT from T_STOCK A where A.PRODUCT_CD = '" + productCd + "'");
-
-			// 取得したデータを出力する
-			while (rset.next()) {
-				recordCount = Integer.parseInt(rset.getString("COUNT"));
-			}
-
-			return recordCount;
 		} catch (Exception e) {
 			return 0;
 		} finally {
