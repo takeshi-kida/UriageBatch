@@ -2,6 +2,8 @@ package UriageBatch;
 
 
 import applicationLogic.CopyZaiko;
+import applicationLogic.SetCost;
+import applicationLogic.SetUriageTran;
 import businesslogic.SelectData;
 
 public class UriageBatch {
@@ -14,10 +16,13 @@ public class UriageBatch {
 			
 			copyZaiko.copyZaiko();
 			
-
-
-			// 仕入CSVを読み込む
-			//readCsv.readShiireCsv();
+			SetUriageTran setUriageTran = new SetUriageTran();
+			
+			setUriageTran.setUriageTran();
+			
+			SetCost setCost = new SetCost();
+			
+			setCost.setCost();
 
 			SelectData selectData = new SelectData();
 
