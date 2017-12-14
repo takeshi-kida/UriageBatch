@@ -15,7 +15,7 @@ public class SelectData {
 
 	private DaoConnectionDriverManeger dm = new DaoConnectionDriverManeger();
 
-	public void selectTSaleTran() throws Exception {
+	public void getTSalesData() throws Exception {
 
 		InsertData insertOracle = new InsertData();
 
