@@ -4,7 +4,6 @@ package UriageBatch;
 import applicationLogic.CopyZaiko;
 import applicationLogic.SetCost;
 import applicationLogic.SetTSales;
-import applicationLogic.SetUriageTran;
 
 public class UriageBatch {
 
