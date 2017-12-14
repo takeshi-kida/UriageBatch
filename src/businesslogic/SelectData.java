@@ -28,7 +28,7 @@ public class SelectData {
 
 			// Resultsetの作成
 			rset = stmt.executeQuery(
-					"select VOUCHER_NO, sum(SALE_AMOUNT) AS SALE_AMOUNT from (select A.VOUCHER_NO AS VOUCHER_NO, (A.SALES * B.SALE_UNIT_PRICE) AS SALE_AMOUNT from T_SALE_TRAN A, M_PRODUCT B WHERE A.PRODUCT_CD = B.PRODUCT_CD AND B.UNIT_PRICE_START_YMD = (select max(UNIT_PRICE_START_YMD) from M_PRODUCT C where C.PRODUCT_CD = B.PRODUCT_CD) and  A.INCLUSION_YMD = (select B.SYS_BUSINESS_DAY　from T_SYSTEM_INFO B))group by VOUCHER_NO");
+					"select VOUCHER_NO, sum(SALE_AMOUNT) AS SALE_AMOUNT from (select A.VOUCHER_NO AS VOUCHER_NO, (A.SALES * B.SALE_UNIT_PRICE) AS SALE_AMOUNT from T_SALE_TRAN A, M_PRODUCT B WHERE A.PRODUCT_CD = B.PRODUCT_CD AND B.UNIT_PRICE_START_YMD = (select max(UNIT_PRICE_START_YMD) from M_PRODUCT C where C.PRODUCT_CD = B.PRODUCT_CD) and  A.INCLUSION_YMD = (select B.SYS_BUSINESS_DAY from T_SYSTEM_INFO B))group by VOUCHER_NO");
 
 			// 取得したデータを出力する
 			while (rset.next()) {
@@ -71,51 +71,6 @@ public class SelectData {
 			throw e;
 		} catch (Throwable e) {
 			throw e;
-		} finally {
-			try {
-				/* クローズ処理 */
-				if (rset != null) {
-					rset.close();
-					rset = null;
-				}
-
-				if (stmt != null) {
-					stmt.close();
-					stmt = null;
-				}
-
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-			} catch (Throwable e) {
-				// nop
-			}
-		}
-	}
-
-	public String selectTSystemInfo() throws Exception {
-
-		String sysBusinessDay = "";
-
-		try {
-			// Connectionの作成
-			conn = dm.getConnection();
-
-			// Statementの作成
-			stmt = conn.createStatement();
-
-			// Resultsetの作成
-			rset = stmt.executeQuery("select * from T_SYSTEM_INFO");
-
-			// 取得したデータを出力する
-			while (rset.next()) {
-				sysBusinessDay = rset.getString("SYS_BUSINESS_DAY");
-			}
-
-			return sysBusinessDay;
-		} catch (Exception e) {
-			return null;
 		} finally {
 			try {
 				/* クローズ処理 */
@@ -206,51 +161,6 @@ public class SelectData {
 			}
 
 			return costUnitPrice;
-		} catch (Exception e) {
-			return 0;
-		} finally {
-			try {
-				/* クローズ処理 */
-				if (rset != null) {
-					rset.close();
-					rset = null;
-				}
-
-				if (stmt != null) {
-					stmt.close();
-					stmt = null;
-				}
-
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-			} catch (Throwable e) {
-				// nop
-			}
-		}
-	}
-
-	public int selectZaikoRecord(String productCd) throws Exception {
-		int recordCount = 0;
-
-		try {
-			// Connectionの作成
-			conn = dm.getConnection();
-
-			// Statementの作成
-			stmt = conn.createStatement();
-
-			// Resultsetの作成
-			rset = stmt
-					.executeQuery("select COUNT(*) AS COUNT from T_STOCK A where A.PRODUCT_CD = '" + productCd + "'");
-
-			// 取得したデータを出力する
-			while (rset.next()) {
-				recordCount = Integer.parseInt(rset.getString("COUNT"));
-			}
-
-			return recordCount;
 		} catch (Exception e) {
 			return 0;
 		} finally {

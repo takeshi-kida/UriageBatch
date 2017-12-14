@@ -10,6 +10,7 @@ import businessEntity.dao.DaoConnectionDriverManeger;
 import businessEntity.dao.InsertT_COST;
 import businessEntity.dao.InsertT_SALE_TRAN;
 import businessEntity.dao.InsertT_STOCK;
+import businessEntity.dao.MergeT_STOCK;
 import businessEntity.dto.T_COST;
 import businessEntity.dto.T_SALE_TRAN;
 
@@ -26,8 +27,8 @@ public class InsertData {
 
 		insertTSaleTran.insertTSaleTran(tSaleTran);
 	}
-	
-	
+
+
 	public void insertUriage(String sql, String voucherNo, int salesAmount ) throws Exception
 	{
 		try {
@@ -122,57 +123,17 @@ public class InsertData {
 		}
 	}
 
-	public void insertShiire(String sql, String costYMD, String productCd, int costs, int costAmount ) throws Exception
+	public void insertShiire(T_COST tCost) throws SQLException
 	{
-		try {
-			// Connectionの作成
-			conn = dm.getConnection();
+		InsertT_COST insertTCost = new InsertT_COST();
 
-			//オートコミットはオフにする。
-			conn.setAutoCommit(false);
-
-			// Statementの作成
-			stmt = conn.createStatement();
-
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, costYMD);
-			ps.setString(2, productCd);
-			ps.setInt(3, costs);
-			ps.setInt(4, costAmount);
-
-			//INSERT文を実行する
-			int result = ps.executeUpdate();
-
-			//処理件数を表示する
-			System.out.println("結果：" + result);
-
-			//コミット
-			conn.commit();
-		} catch (Exception e) {
-			conn.rollback();
-			throw e;
-		} finally {
-			try {
-				/* クローズ処理 */
-				if (stmt != null) {
-					stmt.close();
-					stmt = null;
-				}
-
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-			} catch (Throwable e) {
-				// nop
-			}
-		}
+		insertTCost.insertTCost(tCost);
 	}
 
 	public void copyTStock() throws SQLException
 	{
 		InsertT_STOCK insertTStock = new InsertT_STOCK();
-		
+
 		insertTStock.copyTStock();
 	}
 
@@ -221,99 +182,15 @@ public class InsertData {
 		}
 	}
 
-	public void updateZaikoFromCost(String sql) throws Exception
-	{
-		try {
-			// Connectionの作成
-			conn = dm.getConnection();
-
-			//オートコミットはオフにする。
-			conn.setAutoCommit(false);
-
-			// Statementの作成
-			stmt = conn.createStatement();
-
-			ps = conn.prepareStatement(sql);
-
-			//INSERT文を実行する
-			int result = ps.executeUpdate();
-
-			//処理件数を表示する
-			System.out.println("結果：" + result);
-
-			//コミット
-			conn.commit();
-
-		} catch (Exception e) {
-			conn.rollback();
-			throw e;
-		} finally {
-			try {
-				/* クローズ処理 */
-
-				if (stmt != null) {
-					stmt.close();
-					stmt = null;
-				}
-
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-			} catch (Throwable e) {
-				// nop
-			}
-		}
-	}
-
-	public void insertZaiko(String sql, String stockYMD, String productCd, int stocks) throws Exception {
-		try {
-			// Connectionの作成
-			conn = dm.getConnection();
-
-			//オートコミットはオフにする。
-			conn.setAutoCommit(false);
-
-			// Statementの作成
-			stmt = conn.createStatement();
-
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, stockYMD);
-			ps.setString(2, productCd);
-			ps.setInt(3, stocks);
-
-			//INSERT文を実行する
-			int result = ps.executeUpdate();
-
-			//処理件数を表示する
-			System.out.println("結果：" + result);
-
-			//コミット
-			conn.commit();
-		} catch (Exception e) {
-			conn.rollback();
-			throw e;
-		} finally {
-			try {
-				/* クローズ処理 */
-				if (stmt != null) {
-					stmt.close();
-					stmt = null;
-				}
-
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-			} catch (Throwable e) {
-				// nop
-			}
-		}
-	}
-
 	public void inserTCost(T_COST tCost) throws SQLException {
 		InsertT_COST insertTCost = new InsertT_COST();
 
 		insertTCost.insertTCost(tCost);
+	}
+
+	public void mergeTStock() throws SQLException {
+		MergeT_STOCK mergeTStock = new MergeT_STOCK();
+
+		mergeTStock.mergeTStock();
 	}
 }

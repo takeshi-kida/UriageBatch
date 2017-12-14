@@ -8,20 +8,15 @@ import applicationLogic.SetUriageTran;
 
 public class UriageBatch {
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		try {
 
 			CopyZaiko copyZaiko = new CopyZaiko();
-			
+
 			copyZaiko.copyZaiko();
-			
-			SetUriageTran setUriageTran = new SetUriageTran();
-			
-			setUriageTran.setUriageTran();
-			
+
 			SetCost setCost = new SetCost();
-			
+
 			setCost.setCost();
 
 			SetTSales setTSales = new SetTSales();
