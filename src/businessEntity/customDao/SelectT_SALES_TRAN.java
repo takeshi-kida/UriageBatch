@@ -11,7 +11,7 @@ public class SelectT_SALES_TRAN extends DaoConnectionDriverManeger {
 
 	private static final String selectTSalesFromTSalesTran = "select VOUCHER_NO, sum(SALE_AMOUNT) AS SALE_AMOUNT from (select A.VOUCHER_NO AS VOUCHER_NO, (A.SALES * B.SALE_UNIT_PRICE) AS SALE_AMOUNT from T_SALE_TRAN A, M_PRODUCT B WHERE A.PRODUCT_CD = B.PRODUCT_CD AND B.UNIT_PRICE_START_YMD = (select max(UNIT_PRICE_START_YMD) from M_PRODUCT C where C.PRODUCT_CD = B.PRODUCT_CD) and  A.INCLUSION_YMD = (select B.SYS_BUSINESS_DAY from T_SYSTEM_INFO B))group by VOUCHER_NO";
 
-	public static List<T_SALE> selectT_SYSTEM_INFO() {
+	public List<T_SALE> selectTSalesFromTSalesTran() {
 		List<T_SALE> getResult = new ArrayList<T_SALE>();
 
 		try {

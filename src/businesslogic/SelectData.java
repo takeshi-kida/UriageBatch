@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
+import businessEntity.customDao.SelectT_SALES_TRAN;
 import businessEntity.dao.DaoConnectionDriverManeger;
+import businessEntity.dto.T_SALE;
 
 public class SelectData {
 
@@ -17,30 +20,11 @@ public class SelectData {
 
 	public void getTSalesData() throws Exception {
 
-		InsertData insertOracle = new InsertData();
-
 		try {
-			// Connectionの作成
-			conn = dm.getConnection();
 
-			// Statementの作成
-			stmt = conn.createStatement();
+			SelectT_SALES_TRAN selectTSalesTran = new SelectT_SALES_TRAN();
 
-			// Resultsetの作成
-			rset = stmt.executeQuery(
-					"select VOUCHER_NO, sum(SALE_AMOUNT) AS SALE_AMOUNT from (select A.VOUCHER_NO AS VOUCHER_NO, (A.SALES * B.SALE_UNIT_PRICE) AS SALE_AMOUNT from T_SALE_TRAN A, M_PRODUCT B WHERE A.PRODUCT_CD = B.PRODUCT_CD AND B.UNIT_PRICE_START_YMD = (select max(UNIT_PRICE_START_YMD) from M_PRODUCT C where C.PRODUCT_CD = B.PRODUCT_CD) and  A.INCLUSION_YMD = (select B.SYS_BUSINESS_DAY from T_SYSTEM_INFO B))group by VOUCHER_NO");
-
-			// 取得したデータを出力する
-			while (rset.next()) {
-				insertOracle.insertUriage("INSERT INTO T_SALE values(?, ?, ?, ?)", rset.getString("VOUCHER_NO"),
-						Integer.parseInt(rset.getString("SALE_AMOUNT")));
-			}
-
-			// 一旦、rsetをクローズする。
-			if (rset != null) {
-				rset.close();
-				rset = null;
-			}
+			List<T_SALE> tSaleData = selectTSalesTran.selectTSalesFromTSalesTran();
 
 			rset = stmt.executeQuery(
 					"select A.VOUCHER_NO, A.PRODUCT_CD, sum(A.SALES) AS SALES from T_SALE_TRAN A WHERE A.INCLUSION_YMD = (select B.SYS_BUSINESS_DAY　from T_SYSTEM_INFO B) group by A.VOUCHER_NO, A.PRODUCT_CD order by A.VOUCHER_NO");
@@ -57,16 +41,11 @@ public class SelectData {
 					i = 1;
 				}
 
-				insertOracle.insertUriageMeisai("INSERT INTO T_SALE_DETAIL values(?, ?, ?, ?)",
-						rset.getString("VOUCHER_NO"), i, rset.getString("PRODUCT_CD"),
-						Integer.parseInt(rset.getString("SALES")));
 
 				// カウンターを1加算
 				i = i + 1;
 			}
 
-		} catch (ClassNotFoundException e) {
-			throw e;
 		} catch (SQLException e) {
 			throw e;
 		} catch (Throwable e) {

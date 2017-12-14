@@ -1,6 +1,6 @@
 package applicationLogic;
 
-import businesslogic.SelectData;;
+import businesslogic.SelectData;
 
 public class SetTSales {
 
