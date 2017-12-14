@@ -17,10 +17,9 @@ public class SelectT_SYSTEM_INFO extends DaoConnectionDriverManeger {
 			// Resultsetの作成
 			ResultSet rset = stmt.executeQuery(selectAllSql);
 
-			T_SYSTEM_INFO tSystemInfo = new T_SYSTEM_INFO();
 			// 取得したデータを出力する
 			while (rset.next()) {
-				tSystemInfo = new T_SYSTEM_INFO();
+				T_SYSTEM_INFO tSystemInfo = new T_SYSTEM_INFO();
 
 				tSystemInfo.SYS_BUSINESS_DAY = rset.getString(1);
 

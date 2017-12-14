@@ -24,7 +24,7 @@ public class SetCost {
 			tCost.PRODUCT_CD = csvData.get(1);
 			tCost.COSTS = Integer.parseInt(csvData.get(2));
 			tCost.COST_AMOUNT = Integer.parseInt(csvData.get(3));
-			
+
 			insertData.inserTCost(tCost);
 		}
 	}
