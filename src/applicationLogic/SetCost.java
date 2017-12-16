@@ -16,7 +16,7 @@ public class SetCost {
 		ArrayList<ArrayList<String>> csvDatas = readCsv.readCsv("C:\\TEMP\\SIIRE.csv");
 
 		InsertData insertData = new InsertData();
-		
+
 		for (ArrayList<String> csvData : csvDatas) {
 			T_COST tCost = new T_COST();
 
@@ -27,5 +27,8 @@ public class SetCost {
 
 			insertData.inserTCost(tCost);
 		}
+
+		// 仕入を在庫テーブルに反映
+		insertData.mergeTStock();
 	}
 }

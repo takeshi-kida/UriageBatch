@@ -17,7 +17,7 @@ public class UriageBatch {
 
 			copyZaiko.copyZaiko();
 
-			// 仕入CSVから仕入テーブルに登録
+			// 仕入CSVから仕入テーブルに登録し在庫テーブルを更新
 			SetCost setCost = new SetCost();
 
 			setCost.setCost();
@@ -27,12 +27,12 @@ public class UriageBatch {
 
 			setTSaleTran.setUriageTran();
 
-			// 本日の売上をトランテーブルから取得し売上に登録
+			// 本日の売上をトランテーブルから取得し売上テーブルに登録
 			SetTSale setTSales = new SetTSale();
 
 			setTSales.setTSale();
 
-			// 本日の売上をトランテーブルから取得し売上明細に登録
+			// 本日の売上をトランテーブルから取得し売上明細テーブルに登録
 			SetTSaleDetail setTsaleDetail = new SetTSaleDetail();
 
 			setTsaleDetail.setTSaleDetail();
