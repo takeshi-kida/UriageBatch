@@ -5,7 +5,7 @@ import applicationLogic.CopyZaiko;
 import applicationLogic.SetCost;
 import applicationLogic.SetTSale;
 import applicationLogic.SetTSaleDetail;
-import applicationLogic.SetUriageTran;
+import applicationLogic.SetTSaleTran;
 
 public class UriageBatch {
 
@@ -23,9 +23,9 @@ public class UriageBatch {
 			setCost.setCost();
 
 			//売上CSVから売上トランテーブルに登録
-			SetUriageTran setTSaleTran = new SetUriageTran();
+			SetTSaleTran setTSaleTran = new SetTSaleTran();
 
-			setTSaleTran.setUriageTran();
+			setTSaleTran.setTSaleTran();
 
 			// 本日の売上をトランテーブルから取得し売上テーブルに登録
 			SetTSale setTSales = new SetTSale();
