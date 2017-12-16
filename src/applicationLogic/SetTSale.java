@@ -8,7 +8,7 @@ import businesslogic.SelectData;
 
 public class SetTSale {
 
-	public void setTSales() throws Exception {
+	public void setTSale() throws Exception {
 		SelectData selectData = new SelectData();
 		InsertData insertData = new InsertData();
 

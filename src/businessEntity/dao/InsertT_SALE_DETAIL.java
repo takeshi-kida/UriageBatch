@@ -2,18 +2,18 @@ package businessEntity.dao;
 
 import java.sql.SQLException;
 
-import businessEntity.dto.T_SALE;
+import businessEntity.dto.T_SALE_DETAIL;
 
 public class InsertT_SALE_DETAIL extends DaoConnectionDriverManeger{
-	private static final String insertSql = "INSERT INTO T_SALE values(?, ?, ?, ?)";
+	private static final String insertSql = "INSERT INTO T_SALE_DETAIL values(?, ?, ?, ?)";
 
-	public void insertTSaleTran(T_SALE tSale)  throws SQLException {
+	public void insertTSaleDetail(T_SALE_DETAIL tSaleDetail)  throws SQLException {
 		try {
 			ps = conn.prepareStatement(insertSql);
-			ps.setString(1, tSale.VOUCHER_NO);
-			ps.setString(2, tSale.SHOP_CD);
-			ps.setString(3, tSale.SALE_YMD);
-			ps.setInt(4, tSale.SALE_AMOUNT);
+			ps.setString(1, tSaleDetail.VOUCHER_NO);
+			ps.setInt(2, tSaleDetail.DETAIL_NO);
+			ps.setString(3, tSaleDetail.PRODUCT_CD);
+			ps.setInt(4, tSaleDetail.SALES);
 
 			//INSERT文を実行する
 			int result = ps.executeUpdate();
