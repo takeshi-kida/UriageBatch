@@ -7,7 +7,7 @@ import businessEntity.dto.T_SALE;
 public class InsertT_SALE extends DaoConnectionDriverManeger{
 	private static final String insertSql = "INSERT INTO T_SALE values(?, ?, ?, ?)";
 
-	public void insertTSaleTran(T_SALE tSale)  throws SQLException {
+	public void insertTSale(T_SALE tSale)  throws SQLException {
 		try {
 			ps = conn.prepareStatement(insertSql);
 			ps.setString(1, tSale.VOUCHER_NO);

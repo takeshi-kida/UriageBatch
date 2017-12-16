@@ -2,13 +2,13 @@ package businesslogic;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
 import businessEntity.customDao.SelectT_SALES_TRAN;
 import businessEntity.dao.DaoConnectionDriverManeger;
 import businessEntity.dto.T_SALE;
+import businessEntity.dto.T_SALE_DETAIL;
 
 public class SelectData {
 
@@ -18,59 +18,23 @@ public class SelectData {
 
 	private DaoConnectionDriverManeger dm = new DaoConnectionDriverManeger();
 
-	public void getTSalesData() throws Exception {
+	public List<T_SALE> getTSalesData() throws Exception {
 
-		try {
+		SelectT_SALES_TRAN selectTSalesTran = new SelectT_SALES_TRAN();
 
-			SelectT_SALES_TRAN selectTSalesTran = new SelectT_SALES_TRAN();
+		List<T_SALE> tSaleData = selectTSalesTran.selectTSalesFromTSalesTran();
 
-			List<T_SALE> tSaleData = selectTSalesTran.selectTSalesFromTSalesTran();
+		return tSaleData; 
+	}
 
-			rset = stmt.executeQuery(
-					"select A.VOUCHER_NO, A.PRODUCT_CD, sum(A.SALES) AS SALES from T_SALE_TRAN A WHERE A.INCLUSION_YMD = (select B.SYS_BUSINESS_DAY　from T_SYSTEM_INFO B) group by A.VOUCHER_NO, A.PRODUCT_CD order by A.VOUCHER_NO");
-
-			String voucherNo = "";
-			int i = 1;
-
-			// 取得したデータを出力する
-			while (rset.next()) {
-
-				// 伝票番号が変更した場合、カウンターを1に戻す
-				if (!voucherNo.equals(rset.getString("VOUCHER_NO"))) {
-					voucherNo = rset.getString("VOUCHER_NO");
-					i = 1;
-				}
+	public List<T_SALE_DETAIL> getTSalesDetailData() throws Exception {
 
 
-				// カウンターを1加算
-				i = i + 1;
-			}
+		SelectT_SALES_TRAN selectTSalesTran = new SelectT_SALES_TRAN();
 
-		} catch (SQLException e) {
-			throw e;
-		} catch (Throwable e) {
-			throw e;
-		} finally {
-			try {
-				/* クローズ処理 */
-				if (rset != null) {
-					rset.close();
-					rset = null;
-				}
+		List<T_SALE_DETAIL> tSaleDeatailData = selectTSalesTran.selectTSalesDetailFromTSalesTran();
 
-				if (stmt != null) {
-					stmt.close();
-					stmt = null;
-				}
-
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-			} catch (Throwable e) {
-				// nop
-			}
-		}
+		return tSaleDeatailData;
 	}
 
 	public int seqTranUri() throws Exception {

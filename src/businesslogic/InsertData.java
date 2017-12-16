@@ -1,6 +1,5 @@
 package businesslogic;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,10 +7,12 @@ import java.sql.Statement;
 
 import businessEntity.dao.DaoConnectionDriverManeger;
 import businessEntity.dao.InsertT_COST;
+import businessEntity.dao.InsertT_SALE;
 import businessEntity.dao.InsertT_SALE_TRAN;
 import businessEntity.dao.InsertT_STOCK;
 import businessEntity.dao.MergeT_STOCK;
 import businessEntity.dto.T_COST;
+import businessEntity.dto.T_SALE;
 import businessEntity.dto.T_SALE_TRAN;
 
 public class InsertData {
@@ -29,51 +30,11 @@ public class InsertData {
 	}
 
 
-	public void insertUriage(String sql, String voucherNo, int salesAmount ) throws Exception
+	public void insertTSale(T_SALE tSale) throws Exception
 	{
-		try {
-			// Connectionの作成
-			conn = dm.getConnection();
-
-			//オートコミットはオフにする。
-			conn.setAutoCommit(false);
-
-			// Statementの作成
-			stmt = conn.createStatement();
-
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, voucherNo);
-			ps.setString(2, voucherNo.substring(0, 3));
-			ps.setString(3, voucherNo.substring(3, 11));
-			ps.setInt(4, salesAmount);
-
-			//INSERT文を実行する
-			int result = ps.executeUpdate();
-
-			//処理件数を表示する
-			System.out.println("結果：" + result);
-
-			//コミット
-			conn.commit();
-		} catch (Exception e) {
-			conn.rollback();
-			throw e;
-		} finally {
-			try {
-				/* クローズ処理 */
-				if (stmt != null) {
-					stmt.close();
-					stmt = null;
-				}
-
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-			} catch (Throwable e) {
-				// nop
-			}
-		}
+		InsertT_SALE insertTsale = new InsertT_SALE();
+		
+		insertTsale.insertTSale(tSale);
 	}
 
 	public void insertUriageMeisai(String sql, String voucherNo, int detailNo, String productCd, int sales ) throws Exception

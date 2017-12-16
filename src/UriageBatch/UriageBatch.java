@@ -3,7 +3,7 @@ package UriageBatch;
 
 import applicationLogic.CopyZaiko;
 import applicationLogic.SetCost;
-import applicationLogic.SetTSales;
+import applicationLogic.SetTSale;
 
 public class UriageBatch {
 
@@ -18,7 +18,7 @@ public class UriageBatch {
 
 			setCost.setCost();
 
-			SetTSales setTSales = new SetTSales();
+			SetTSale setTSales = new SetTSale();
 
 			// 本日の売上をトランテーブルから取得し売上に登録
 			setTSales.setTSales();
