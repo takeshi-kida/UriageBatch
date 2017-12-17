@@ -10,7 +10,7 @@ public class SelectT_SYSTEM_INFO extends DaoConnectionDriverManeger {
 
 	private static final String selectAllSql = "select SYS_BUSINESS_DAY from T_SYSTEM_INFO";
 
-	public static List<T_SYSTEM_INFO> selectT_SYSTEM_INFO() {
+	public List<T_SYSTEM_INFO> selectT_SYSTEM_INFO() {
 		List<T_SYSTEM_INFO> getResult = new ArrayList<T_SYSTEM_INFO>();
 
 		try {

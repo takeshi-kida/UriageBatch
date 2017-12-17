@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class DaoConnectionDriverManeger {
 
 	Connection conn = null;
-	protected static Statement stmt = null;
+	protected Statement stmt = null;
 	PreparedStatement ps = null;
 
 	public DaoConnectionDriverManeger()
@@ -29,8 +29,11 @@ public class DaoConnectionDriverManeger {
 							+ ConnectionStrings.SID.getValue(),
 					ConnectionStrings.USER.getValue(), ConnectionStrings.PASS.getValue());
 
+			// Statementの作成
+			stmt = conn.createStatement();
+
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 
 		return conn;

@@ -38,8 +38,7 @@ public class ReadCsv implements IReadCsv {
 
 			br.close();
 		} catch (Exception e) {
-			// Fileオブジェクト生成時の例外捕捉
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 
 		return raw;
