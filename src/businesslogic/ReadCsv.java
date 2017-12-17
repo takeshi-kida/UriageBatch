@@ -2,9 +2,7 @@ package businesslogic;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -39,12 +37,9 @@ public class ReadCsv implements IReadCsv {
 			}
 
 			br.close();
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// Fileオブジェクト生成時の例外捕捉
-			e.printStackTrace();
-		} catch (IOException e) {
-			// BufferedReaderオブジェクトのクローズ時の例外捕捉
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 		return raw;

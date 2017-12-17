@@ -13,7 +13,7 @@ public class SetCost {
 		ReadCsv readCsv = new ReadCsv();
 
 		// 売上伝票CSVを読み込む
-		ArrayList<ArrayList<String>> csvDatas = readCsv.readCsv("C:\\TEMP\\SIIRE.csv");
+		ArrayList<ArrayList<String>> csvDatas = readCsv.readCsv("C:\\TMP\\SIIRE.csv");
 
 		InsertData insertData = new InsertData();
 
