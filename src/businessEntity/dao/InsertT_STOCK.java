@@ -7,10 +7,10 @@ public class InsertT_STOCK extends DaoConnectionDriverManeger {
 
 	public void copyTStock() throws SQLException {
 		try {
-			ps = conn.prepareStatement(insertSql);
+			this.ps = this.conn.prepareStatement(insertSql);
 
 			//INSERT文を実行する
-			int result = ps.executeUpdate();
+			int result = this.ps.executeUpdate();
 
 			//処理件数を表示する
 			System.out.println("結果：" + result);

@@ -22,11 +22,11 @@ public class SelectT_SALES_TRAN extends DaoConnectionDriverManeger {
 
 			// 取得したデータを出力する
 			while (rset.next()) {
-				T_SALE	tSale = new T_SALE();
+				T_SALE tSale = new T_SALE();
 
 				tSale.VOUCHER_NO = rset.getString(1);
-				tSale.SHOP_CD = tSale.VOUCHER_NO.substring(0, 5);
-				tSale.SALE_YMD = tSale.VOUCHER_NO.substring(6,13);
+				tSale.SHOP_CD = tSale.VOUCHER_NO.substring(0, 6);
+				tSale.SALE_YMD = tSale.VOUCHER_NO.substring(6, 14);
 				tSale.SALE_AMOUNT = rset.getInt(2);
 
 				getResult.add(tSale);
@@ -51,7 +51,7 @@ public class SelectT_SALES_TRAN extends DaoConnectionDriverManeger {
 			// 取得したデータを出力する
 			while (rset.next()) {
 				T_SALE_DETAIL tSaleDetail = new T_SALE_DETAIL();
-				
+
 				// 伝票番号が変更した場合、カウンターを1に戻す
 				if (!voucherNo.equals(rset.getString(1))) {
 					voucherNo = rset.getString(1);

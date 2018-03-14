@@ -9,14 +9,14 @@ import businesslogic.ReadCsv;
 
 public class SetTSaleTran {
 
-	public void setTSaleTran() throws SQLException {
+	public void setTSaleTran()  {
 		ReadCsv readCsv = new ReadCsv();
 
 		// 売上伝票CSVを読み込む
-		ArrayList<ArrayList<String>> csvDatas = readCsv.readCsv("C:\\TEMP\\URIAGE.csv");
+		ArrayList<ArrayList<String>> csvDatas = readCsv.readCsv("C:\\TMP\\URIAGE.csv");
 
 		InsertData insertData = new InsertData();
-		
+
 		for (ArrayList<String> csvData : csvDatas) {
 			T_SALE_TRAN tSaleTran = new T_SALE_TRAN();
 
@@ -25,8 +25,13 @@ public class SetTSaleTran {
 			tSaleTran.VOUCHER_NO = csvData.get(2);
 			tSaleTran.PRODUCT_CD = csvData.get(3);
 			tSaleTran.SALES = Integer.parseInt(csvData.get(4));
-			
-			insertData.inserTSaleTran(tSaleTran);
+
+			try {
+				insertData.inserTSaleTran(tSaleTran);
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
 		}
 	}
 }
