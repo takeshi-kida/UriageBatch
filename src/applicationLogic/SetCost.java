@@ -12,7 +12,7 @@ public class SetCost {
 	public void setCost() throws SQLException {
 		ReadCsv readCsv = new ReadCsv();
 
-		// 売上伝票CSVを読み込む
+		// 仕入伝票CSVを読み込む
 		ArrayList<ArrayList<String>> csvDatas = readCsv.readCsv("C:\\TEMP\\SIIRE.csv");
 
 		InsertData insertData = new InsertData();
