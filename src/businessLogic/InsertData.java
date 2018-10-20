@@ -75,7 +75,7 @@ public class InsertData {
 
 			ps = conn.prepareStatement("update T_STOCK A SET STOCKS = STOCKS - (select sum(D.SALES) from T_SALE_DETAIL D, T_SALE E where D.VOUCHER_NO = E.VOUCHER_NO AND D.PRODUCT_CD = A.PRODUCT_CD AND E.SALE_YMD = (select C.SYS_BUSINESS_DAY from T_SYSTEM_INFO C)) where A.STOCK_YMD = (select C.SYS_BUSINESS_DAY from T_SYSTEM_INFO C)" );
 
-			//INSERT文を実行する
+			//UPDATE文を実行する
 			int result = ps.executeUpdate();
 
 			//処理件数を表示する
