@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import businessEntity.dto.T_SALE_TRAN;
-import businesslogic.InsertData;
-import businesslogic.ReadCsv;
+import businessLogic.InsertData;
+import businessLogic.ReadCsv;
 
 public class SetTSaleTran {
 

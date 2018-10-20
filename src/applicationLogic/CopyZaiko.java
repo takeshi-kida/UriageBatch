@@ -2,7 +2,7 @@ package applicationLogic;
 
 import java.sql.SQLException;
 
-import businesslogic.InsertData;
+import businessLogic.InsertData;
 
 public class CopyZaiko {
 

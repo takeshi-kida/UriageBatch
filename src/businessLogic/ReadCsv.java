@@ -1,4 +1,4 @@
-package businesslogic;
+package businessLogic;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -3,8 +3,8 @@ package applicationLogic;
 import java.util.List;
 
 import businessEntity.dto.T_SALE;
-import businesslogic.InsertData;
-import businesslogic.SelectData;
+import businessLogic.InsertData;
+import businessLogic.SelectData;
 
 public class SetTSale {
 
